@@ -6,14 +6,15 @@
 #include    <netinet/in.h>
 #include    <unistd.h>
 
-#define READ_SIZE 4096
-#define BUFFER_SIZE 1024
+#define READ_SIZE 512
+#define BUFFER_SIZE 80
 #define PORT 8080
 
 void vuln_read(int client_fd) {
   char buffer[BUFFER_SIZE] = {0};  // initialize array with zeroes
 
   int n = read(client_fd, buffer, READ_SIZE);
+  printf("read: %d bytes\n", n);
   
   // echo input back to client
   write(client_fd, buffer, n + 1); // include null
