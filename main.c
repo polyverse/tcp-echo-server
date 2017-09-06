@@ -6,8 +6,8 @@
 #include    <netinet/in.h>
 #include    <unistd.h>
 
-#define READ_SIZE 128
-#define BUFFER_SIZE 10
+#define READ_SIZE 4096
+#define BUFFER_SIZE 1024
 #define PORT 8080
 
 void vuln_read(int client_fd) {
@@ -17,13 +17,6 @@ void vuln_read(int client_fd) {
   
   // echo input back to client
   write(client_fd, buffer, n + 1); // include null
-
-  // ** STUFF BELOW CAN BE REMOVED **
-  for (size_t i = 0; i < READ_SIZE; i+=8) {
-    printf("buffer addr: %p\nbuffer size: %d\nread size: %d\nbytes read: %d\nincoming msg: %s\nstack dump at buffer addr for read size:\n", (void*)&buffer, BUFFER_SIZE, READ_SIZE, n, buffer);
-    printf("%02X %02X %02X %02X %02X %02X %02X %02X\n", (unsigned char) buffer[i], (unsigned char) buffer[i+1], (unsigned char) buffer[i+2], (unsigned char) buffer[i+3], (unsigned char) buffer[i+4], (unsigned char) buffer[i+5], (unsigned char) buffer[i+6], (unsigned char) buffer[i+7]);
-  }
-  printf("\n");
 }
 
 int main (int argc, char **argv){

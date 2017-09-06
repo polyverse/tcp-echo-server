@@ -12,7 +12,6 @@ RUN mkdir -p /opt/polyverse
 WORKDIR /opt/polyverse
 COPY main.c /opt/polyverse
 
-#https://stackoverflow.com/questions/956640/linux-c-error-undefined-reference-to-dlopen
-RUN gcc -std=c99 -g -fno-stack-protector -z execstack -o tcp_echo_server main.c -ldl
+RUN gcc -std=c99 -g -fno-stack-protector -z execstack -o tcp_echo_server main.c
 
 ENTRYPOINT ["/opt/polyverse/tcp_echo_server"]
