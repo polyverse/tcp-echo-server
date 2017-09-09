@@ -6,14 +6,12 @@
 #include    <netinet/in.h>
 #include    <unistd.h>
 
-#define READ_SIZE 512
-#define BUFFER_SIZE 80
-#define PORT 8080
+#define BUFFER_SIZE 1000
 
 void vuln_read(int client_fd) {
-  char buffer[BUFFER_SIZE] = {0};  // initialize array with zeroes
+  char buffer[100] = {0};  // initialize array with zeroes
 
-  int n = read(client_fd, buffer, READ_SIZE);
+  int n = read(client_fd, buffer, BUFFER_SIZE);
   printf("read: %d bytes\n", n);
   
   // echo input back to client
@@ -33,7 +31,7 @@ int main (int argc, char **argv){
   
   server_addr.sin_family = AF_INET;
   server_addr.sin_addr.s_addr = INADDR_ANY;
-  server_addr.sin_port = htons(PORT);  // convert from host byte order (lsb) to network byte order (msb)
+  server_addr.sin_port = htons(8080);  // port to use; convert from host byte order (lsb) to network byte order (msb)
 
   if (bind(server_fd, (struct sockaddr *) &server_addr, sizeof(server_addr)) < 0) {
     fprintf(stderr, "Error on bind(). Exiting...\n");
