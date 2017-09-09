@@ -40,7 +40,10 @@ int main (int argc, char **argv){
     exit(EXIT_FAILURE);
   }
 
-  listen(server_fd, 1);
+  if (listen(server_fd, 20) != 0) {
+    fprintf(stderr, "Error on listen(). Exiting...\n");
+    exit(EXIT_FAILURE);
+  }
 
   while(1) {
     cli_len = sizeof(client_addr);
