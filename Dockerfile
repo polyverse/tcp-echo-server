@@ -12,6 +12,6 @@ RUN mkdir -p /opt/polyverse
 WORKDIR /opt/polyverse
 COPY main.c /opt/polyverse
 
-RUN gcc -std=c99 -g -fno-stack-protector -z execstack -o tcp_echo_server main.c
+RUN gcc -g -fno-stack-protector -z execstack -o tcp_echo_server main.c
 
 ENTRYPOINT ["/opt/polyverse/tcp_echo_server"]

@@ -9,7 +9,7 @@
 #define BUFFER_SIZE 1000
 
 void vuln_read(int client_fd) {
-  char buffer[100] = {0};  // initialize array with zeroes
+  char buffer[80] = {0};  // initialize array with zeroes
 
   int n = read(client_fd, buffer, BUFFER_SIZE);
   printf("read: %d bytes\n", n);
@@ -19,7 +19,7 @@ void vuln_read(int client_fd) {
 }
 
 int main (int argc, char **argv){
-  int port, server_fd, client_fd;
+  int port=0x1234, server_fd, client_fd;
   socklen_t cli_len;
   struct sockaddr_in server_addr, client_addr;
 
