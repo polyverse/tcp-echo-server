@@ -18,7 +18,7 @@ void vuln_read(int client_fd) {
   write(client_fd, buffer, n + 1); // include null
 }
 
-int main (int argc, char **argv){
+int main (int argc, char **argv, char **envp){
   int port=0x1234, server_fd, client_fd;
   socklen_t cli_len;
   struct sockaddr_in server_addr, client_addr;
