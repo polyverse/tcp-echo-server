@@ -1,0 +1,18 @@
+FROM alpine:3.6
+
+RUN apk update
+RUN apk add bash gcc libc-dev bash
+#RUN apk add curl gdb git make nasm python
+
+WORKDIR /root
+#RUN git clone https://github.com/longld/peda.git
+#RUN echo "source /root/peda/peda.py" >> /root/.gdbinit
+#RUN echo 'peda.execute("set breakpoint pending on")' >> /root/peda/peda.py
+
+RUN mkdir -p /opt/polyverse
+WORKDIR /opt/polyverse
+COPY main.c /opt/polyverse
+
+RUN gcc -fstack-protector-all -fPIC -Fpie -pie -Wl,-z,relro,-z,now -o tcp_echo_server main.c
+
+ENTRYPOINT ["/opt/polyverse/tcp_echo_server"]
