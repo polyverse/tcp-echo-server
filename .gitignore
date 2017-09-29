@@ -1,3 +1,5 @@
 .DS_Store
 .gdb_history
 .git
+peda-session-tcp_echo_server.txt
+tcp_echo_server
