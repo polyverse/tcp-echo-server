@@ -3,8 +3,8 @@
 #target=alpine
 #target=centos
 #target=trusty
-#target=xenial
-target=zesty
+target=xenial
+#target=zesty
 
 # Use this command to run
 #docker run -it --rm -p 8080:8080 --name echo polyverse/tcp_echo_server.$target
