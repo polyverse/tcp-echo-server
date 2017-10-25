@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-RUN apt-get update
+RUN apt-get update -y
 RUN apt-get install -y gcc libc6-dev-i386 
 #RUN apt-get install -y bsdmainutils curl gdb git make nasm python
 

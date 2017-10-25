@@ -1,9 +1,9 @@
 #! /bin/bash
 
 #target=alpine
-target=centos
+#target=centos
 #target=trusty
-#target=xenial
+target=xenial
 #target=zesty
 
 # Use this command to run
