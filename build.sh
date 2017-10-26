@@ -18,8 +18,8 @@ buildtargets()
 	done
 }
 
-# Special keyword "everything" means build and push to both polyverse and jfrog repos
-if [ "$1" == "everything" ]; then
+# Special keyword "all" means build and push to both polyverse and jfrog repos
+if [ "$1" == "all" ]; then
 	buildtargets -s -r polyverse
 	buildtargets -s -r polyverse-internal.jfrog.io
 else
