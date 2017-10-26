@@ -1,6 +1,27 @@
 #! /bin/bash
-pv build -f Dockerfile.alpine -n tcp_echo_server.alpine $1 docker
-pv build -f Dockerfile.centos -n tcp_echo_server.centos $1 docker
-pv build -f Dockerfile.trusty -n tcp_echo_server.trusty $1 docker
-pv build -f Dockerfile.xenial -n tcp_echo_server.xenial $1 docker
-pv build -f Dockerfile.zesty  -n tcp_echo_server.zesty  $1 docker
+#
+
+targets=( alpine centos trusty xenial zesty)
+
+buildtarget()
+{
+	command="pv build -f Dockerfile.$1 -n tcp_echo_server.$1 ${@:2} docker"
+	echo $command
+	$command
+}
+
+buildtargets()
+{
+	for target in "${targets[@]}"
+	do
+		buildtarget $target ${@:1}
+	done
+}
+
+# Special keyword "everything" means build and push to both polyverse and jfrog repos
+if [ "$1" == "everything" ]; then
+	buildtargets -s -r polyverse
+	buildtargets -s -r polyverse-internal.jfrog.io
+else
+	builtargets "$@"
+fi
