@@ -17,7 +17,7 @@ if [ $# -ne 1 ] || ! [[ "$1" =~ ^(alpine|centos|trusty|xenial|zesty)$ ]]; then
 fi
 
 # Use this command to run
-docker run -it --rm -p 8080:8080 --name echo polyverse/tcp_echo_server_$1
+# docker run -it --rm -p 8080:8080 --name echo polyverse/tcp_echo_server.$1
 
 # Use this command to debug (and run the server by hand internally, using gdb)
-# docker run --privileged -it --rm -p 8080:8080 --name echo --entrypoint /bin/bash polyverse/tcp_echo_server_$1
+docker run --privileged -it --rm -p 8080:8080 --name echo --entrypoint /bin/bash polyverse/tcp_echo_server.$1

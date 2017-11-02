@@ -23,5 +23,5 @@ if [ "$1" == "all" ]; then
 	buildtargets -s -r polyverse
 	buildtargets -s -r internal.hub.polyverse.io
 else
-	buildtargets "$@"
+	buildtarget "$@"
 fi
