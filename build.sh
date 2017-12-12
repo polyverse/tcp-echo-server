@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-#
+#!/bin/bash
 
 targets=( alpine centos trusty xenial zesty bionic)
 
