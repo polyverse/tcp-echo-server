@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 SHORT_DESCRIPTION="Launch the vulnerable tcp_echo_server container for the given OS."
 
