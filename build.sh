@@ -4,7 +4,7 @@ targets=( alpine centos trusty xenial zesty bionic)
 
 buildtarget()
 {
-	command="pv build -f Dockerfile.$1 -n tcp_echo_server.$1 ${@:2} docker"
+	command="pv build -f Dockerfile.$1 -n tcp-echo-server.$1 ${@:2} docker"
 	echo $command
 	$command
 }
