@@ -1,6 +1,6 @@
 #!/bin/bash
 
-targets=( alpine centos trusty xenial zesty bionic)
+targets=( alpine centos trusty xenial zesty artful bionic)
 
 buildtarget()
 {
