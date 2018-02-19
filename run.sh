@@ -4,14 +4,14 @@ SHORT_DESCRIPTION="Launch the vulnerable tcp-echo-server container for the given
 
 USAGE="$(cat <<EOF
 
-Usage: sh tcp-echo-server.sh ${0##*/} [alpine|centos|trusty|xenial|zesty|bionic]
+Usage: sh tcp-echo-server.sh ${0##*/} [alpine|centos|trusty|xenial|zesty|artful|bionic]
 
 $SHORT_DESCRIPTION
 
 EOF
 )"
 
-if [ $# -ne 1 ] || ! [[ "$1" =~ ^(alpine|centos|trusty|xenial|zesty|bionic)$ ]]; then
+if [ $# -ne 1 ] || ! [[ "$1" =~ ^(alpine|centos|trusty|xenial|zesty|artful|bionic)$ ]]; then
   printf "$USAGE\n\n"
   exit 1
 fi
