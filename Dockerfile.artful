@@ -1,4 +1,4 @@
-FROM ubuntu:17.10
+FROM ubuntu:artful
 
 RUN apt-get update -y
 RUN apt-get install -y curl gcc libc6-dev-i386 
