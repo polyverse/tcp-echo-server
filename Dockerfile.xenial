@@ -1,7 +1,7 @@
 FROM ubuntu:xenial
 
 RUN apt-get update -y
-RUN apt-get install -y curl gcc libc6-dev 
+RUN apt-get install -y curl gcc libc-dev 
 #RUN apt-get install -y bsdmainutils gdb git make nasm python
 
 #WORKDIR /root
