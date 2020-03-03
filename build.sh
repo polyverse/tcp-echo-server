@@ -1,26 +1,30 @@
 #!/bin/bash
+set -e
 
-targets=( alpine centos trusty xenial zesty artful bionic)
+declare -r PV_DOCKER_REGISTRY="polyverse"
+declare -r PV_GIT_COMMIT="$(git rev-parse --verify HEAD)"
+declare -r PV_NAME="tcp-echo-server"
 
-buildtarget()
-{
-	command="pv build -f Dockerfile.$1 -n tcp-echo-server.$1 ${@:2} docker"
-	echo $command
-	$command
-}
+declare -r PV_TARGETS="alpine centos trusty xenial bionic"
 
-buildtargets()
-{
-	for target in "${targets[@]}"
-	do
-		buildtarget $target ${@:1}
+main() {
+	for PV_TARGET in ${PV_TARGETS}; do
+		build ${PV_TARGET}
+        	[ $? -ne 0 ] && return 1
 	done
+
+        return 0
 }
 
-# Special keyword "all" means build and push to both polyverse and jfrog repos
-if [ "$1" == "all" ]; then
-	buildtargets -s -r polyverse
-	buildtargets -s -r internal.hub.polyverse.io
-else
-	buildtarget "$@"
-fi
+build() {
+	declare -r PV_TARGET="${1}"
+
+	# Build the image
+        docker build -f Dockerfile.${PV_TARGET} -t "${PV_NAME}" -t "${PV_DOCKER_REGISTRY}/${PV_NAME}.${PV_TARGET}:latest" -t "${PV_DOCKER_REGISTRY}/${PV_NAME}.${PV_TARGET}:${PV_GIT_COMMIT}" .
+        [ $? -ne 0 ] && return 1
+
+        return 0
+}
+
+main "$@"
+exit $?
