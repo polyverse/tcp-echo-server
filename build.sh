@@ -20,8 +20,16 @@ build() {
 	declare -r PV_TARGET="${1}"
 
 	# Build the image
-        docker build -f Dockerfile.${PV_TARGET} -t "${PV_NAME}" -t "${PV_DOCKER_REGISTRY}/${PV_NAME}.${PV_TARGET}:latest" -t "${PV_DOCKER_REGISTRY}/${PV_NAME}.${PV_TARGET}:${PV_GIT_COMMIT}" .
+        docker build -f Dockerfile.${PV_TARGET} -t "${PV_NAME}" -t "${PV_DOCKER_REGISTRY}/${PV_NAME}.${PV_TARGET}:latest" .
         [ $? -ne 0 ] && return 1
+
+        # Don't tag when there are uncommitted changes.
+        if [ -z "$(git status -s -uno)" ]; then
+                declare -r PV_GIT_COMMIT="$(git rev-parse --verify HEAD)"
+
+                docker tag "${PV_DOCKER_REGISTRY}/${PV_NAME}.${PV_TARGET}:latest" "${PV_DOCKER_REGISTRY}/${PV_NAME}.${PV_TARGET}:${PV_GIT_COMMIT}"
+                [ $? -ne 0 ] && return 1
+        fi
 
         return 0
 }
