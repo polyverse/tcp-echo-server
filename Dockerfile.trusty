@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM ubuntu:trusty@sha256:ffc76f71dd8be8c9e222d420dc96901a07b61616689a44c7b3ef6a10b7213de4
 
 RUN apt-get update -y
 RUN apt-get install -y curl gcc libc-dev 

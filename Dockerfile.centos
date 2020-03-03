@@ -1,4 +1,4 @@
-FROM centos:7
+FROM centos:7@sha256:4a701376d03f6b39b8c2a8f4a8e499441b0d567f9ab9d58e4991de4472fb813c
 
 RUN yum update -y
 RUN yum install -y curl gcc libc-dev 

@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM ubuntu:xenial@sha256:e9938f45e51d9ff46e2b05a62e0546d0f07489b7f22fbc5288defe760599e38a
 
 RUN apt-get update -y
 RUN apt-get install -y curl gcc libc-dev 

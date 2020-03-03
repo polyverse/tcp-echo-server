@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:bionic@sha256:04d48df82c938587820d7b6006f5071dbbffceb7ca01d2814f81857c631d44df
 
 RUN apt-get update -y
 RUN apt-get install -y curl gcc libc-dev 
