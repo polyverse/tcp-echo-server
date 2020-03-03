@@ -2,7 +2,6 @@
 set -e
 
 declare -r PV_DOCKER_REGISTRY="polyverse"
-declare -r PV_GIT_COMMIT="$(git rev-parse --verify HEAD)"
 declare -r PV_NAME="tcp-echo-server"
 
 declare -r PV_TARGETS="alpine centos trusty xenial bionic"
